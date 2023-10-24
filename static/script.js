@@ -1,3 +1,6 @@
+let selectedFiles;
+let formData = new FormData();
+
 document.getElementById("browse").addEventListener("click", function () {
     var fileInput = document.createElement("input");
     fileInput.type = "file";
@@ -5,11 +8,11 @@ document.getElementById("browse").addEventListener("click", function () {
     fileInput.multiple = true;
 
     fileInput.addEventListener("change", function () {
-        var selectedFiles = fileInput.files;
+        selectedFiles = fileInput.files;
         if (selectedFiles.length > 0) {
-            var formData = new FormData();
+            var filesInnerHTML = document.getElementById("files");
+            filesInnerHTML.innerHTML = "Files: " + selectedFiles.length;
             for (var i = 0; i < selectedFiles.length; i++) {
-                console.log(selectedFiles[i].textContent);
                 formData.append("files", selectedFiles[i]);
             }
 
@@ -27,17 +30,17 @@ document.getElementById("browse").addEventListener("click", function () {
     fileInput.click();
 });
 
-function getCookie(name) {
-    var cookieValue = null;
-    if (document.cookie && document.cookie !== "") {
-        var cookies = document.cookie.split(";");
-        for (var i = 0; i < cookies.length; i++) {
-            var cookie = cookies[i].trim();
-            if (cookie.substring(0, name.length + 1) === name + "=") {
-                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                break;
-            }
-        }
-    }
-    return cookieValue;
-}
+// function getCookie(name) {
+//     var cookieValue = null;
+//     if (document.cookie && document.cookie !== "") {
+//         var cookies = document.cookie.split(";");
+//         for (var i = 0; i < cookies.length; i++) {
+//             var cookie = cookies[i].trim();
+//             if (cookie.substring(0, name.length + 1) === name + "=") {
+//                 cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+//                 break;
+//             }
+//         }
+//     }
+//     return cookieValue;
+// }

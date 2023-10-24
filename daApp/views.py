@@ -9,6 +9,4 @@ def index(request):
 def upload(request):
     if request.method == "POST" and request.FILES:
         uploaded_files = request.FILES.getlist("files")
-        for file in uploaded_files:
-            print(file.name)
-            print(file.read())
+        return HttpResponse("Uploaded files")
