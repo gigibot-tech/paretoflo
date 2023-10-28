@@ -11,17 +11,21 @@ document.getElementById("browse").addEventListener("click", function () {
         selectedFiles = fileInput.files;
         if (selectedFiles.length > 0) {
             var filesInnerHTML = document.getElementById("files");
+            var browseDiv = document.getElementById("btn");
             filesInnerHTML.innerHTML = "Files: " + selectedFiles.length;
+
             for (var i = 0; i < selectedFiles.length; i++) {
                 formData.append("files", selectedFiles[i]);
             }
+
+            browseDiv.innerHTML = "<div id='output' class='output'></div>";
 
             var csrfToken = document.querySelector('input[name="csrfmiddlewaretoken"]').value;
 
             var xhr = new XMLHttpRequest();
             xhr.open("POST", "upload/");
 
-            xhr.setRequestHeader("X-CSRFToken", csrfToken);
+            xhr.setRequestHeader("X-CSRFToken", csrfToken); 
 
             xhr.send(formData);
         }
@@ -29,6 +33,13 @@ document.getElementById("browse").addEventListener("click", function () {
 
     fileInput.click();
 });
+
+
+if (selectedFiles.length > 0) {
+    document.getElementById("browse").addEventListener("click", function () {
+        
+    });
+}
 
 // function getCookie(name) {
 //     var cookieValue = null;
